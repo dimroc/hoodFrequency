@@ -12,7 +12,8 @@
     "angular-sanitize": "1.2.15",
     "angular-route": "1.2.15",
     "underscore": "~1.6.0",
-    "paper": "~0.9.18"
+    "paper": "~0.9.18",
+    "jquery-csv": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",
