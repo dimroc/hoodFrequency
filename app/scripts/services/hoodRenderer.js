@@ -40,8 +40,6 @@ angular.module('hoodFrequencyApp').
             closed: true
           });
 
-          pathFromArray.strokeColor = 'white';
-          pathFromArray.fillColor = 'black';
           return pathFromArray;
         }
       },
@@ -57,7 +55,15 @@ angular.module('hoodFrequencyApp').
         }, this);
       },
 
-      drawHoods: function(hoods, canvas, scale) {
+      colorHood: function(hood, colorChart) {
+        _(hood.paths).each(function(path) {
+          var color = 1 - colorChart[hood.slug];
+          path.fillColor = new paper.Color(color, color, color);
+          path.strokeColor = 'black';
+        });
+      },
+
+      drawHoods: function(hoods, colorChart, canvas, scale) {
         var scope = paper.setup(canvas);
         var geometries = _(hoods).map(function(hood) { return hood.geometry });
         var minPoint = this.getMinPointForAll(geometries);
@@ -65,6 +71,10 @@ angular.module('hoodFrequencyApp').
 
         _(hoods).each(function(hood) {
           hood.paths = this.drawHood(scope, hood, minPoint, scale);
+        }, this);
+
+        _(hoods).each(function(hood) {
+          this.colorHood(hood, colorChart);
         }, this);
 
         //this._handleMouseEvents(scope, id);
@@ -79,12 +89,12 @@ angular.module('hoodFrequencyApp').
           //}
         //}
 
-        scope.view.onFrame = function(event) {
-          _(scope.project.layers[0]._children).each(function(path) {
-            if(path.fillColor.blue != 0)
-              path.fillColor.blue -= 0.005;
-          });
-        };
+        //scope.view.onFrame = function(event) {
+          //_(scope.project.layers[0]._children).each(function(path) {
+            //if(path.fillColor.blue != 0)
+              //path.fillColor.blue -= 0.005;
+          //});
+        //};
 
         scope.view.draw();
       },
@@ -122,8 +132,8 @@ angular.module('hoodFrequencyApp').
       //}
     };
 
-    return function (hoods, canvas) {
-      HoodRenderer.drawHoods(hoods, canvas);
+    return function (hoods, colorChart, canvas) {
+      HoodRenderer.drawHoods(hoods, colorChart, canvas);
     };
   });
 

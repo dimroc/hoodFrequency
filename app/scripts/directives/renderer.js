@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('hoodFrequencyApp')
-  .directive('renderer', ['hoodLoader', 'hoodRenderer', 'frequencyLoader',
-             function (hoodLoader, hoodRenderer, frequencyLoader) {
+  .directive('renderer', ['hoodLoader', 'hoodRenderer', 'frequencyLoader', 'colorCharter',
+             function (hoodLoader, hoodRenderer, frequencyLoader, colorCharter) {
     return {
       restrict: 'A',
       template: '<canvas class="hoods"></canvas>',
       link: function (scope, elem, attrs) {
         hoodLoader(scope.hoods).done(function(hoods) {
           frequencyLoader('knicks').done(function(frequency) {
-            console.log(frequency);
-            hoodRenderer(hoods, elem.find('canvas')[0]);
+            var colorChart = colorCharter(frequency);
+            hoodRenderer(hoods, colorChart, elem.find('canvas')[0]);
           });
         });
       }
