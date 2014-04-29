@@ -1,36 +1,13 @@
 'use strict';
 
 angular.module('hoodFrequencyApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.hoods = [
-      'east-village',
-      'clinton',
-      'gramercy',
-      'hamilton-heights',
-      'chinatown',
-      'stuyvesant-town-cooper-village',
-      'battery-park-city-lower-manhattan',
-      'yorkville',
-      'midtown-midtown-south',
-      'washington-heights-north',
-      'turtle-bay-east-midtown',
-      'lenox-hill-roosevelt-island',
-      'murray-hill-kips-bay',
-      'upper-east-side-carnegie-hill',
-      'lower-east-side',
-      'central-harlem-north-polo-grounds',
-      'east-harlem-south',
-      'upper-west-side',
-      'lincoln-square',
-      'washington-heights-south',
-      'central-harlem-south',
-      'soho-tribeca-civic-center-little-italy',
-      'west-village',
-      'hudson-yards-chelsea-flatiron-union-square',
-      'manhattanville',
-      'morningside-heights',
-      'east-harlem-north',
-      'marble-hill-inwood',
-      'park-cemetery-etc-manhattan'
-    ]
+  .controller('MainCtrl', function ($scope, $routeParams, hoodDirectory) {
+    $scope.hoods = hoodDirectory.manhattan;
+    $scope.frequencyFile = $routeParams.frequencyFile || 'knicks';
+
+    $scope.isActive = function(file) {
+      if ($scope.frequencyFile == file) {
+        return "active";
+      }
+    };
   });
