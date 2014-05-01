@@ -55,15 +55,15 @@ angular.module('hoodFrequencyApp').
         }, this);
       },
 
-      colorHood: function(hood, colorChart) {
+      colorHood: function(hood) {
         _(hood.paths).each(function(path) {
-          var color = 1 - colorChart[hood.slug];
+          var color = 1 - hood.normalizedFrequency;
           path.fillColor = new paper.Color(color, color, color);
           path.strokeColor = 'black';
         });
       },
 
-      drawHoods: function(ngscope, hoods, colorChart, canvas, scale) {
+      drawHoods: function(ngscope, hoods, canvas, scale) {
         var scope = paper.setup(canvas);
         var geometries = _(hoods).map(function(hood) { return hood.geometry });
         var minPoint = this.getMinPointForAll(geometries);
@@ -74,7 +74,7 @@ angular.module('hoodFrequencyApp').
         }, this);
 
         _(hoods).each(function(hood) {
-          this.colorHood(hood, colorChart);
+          this.colorHood(hood);
         }, this);
 
         this._handleMouseEvents(scope, ngscope);
@@ -98,8 +98,8 @@ angular.module('hoodFrequencyApp').
       }
     };
 
-    return function (ngscope, hoods, colorChart, canvas) {
-      HoodRenderer.drawHoods(ngscope, hoods, colorChart, canvas);
+    return function (ngscope, hoods, canvas) {
+      HoodRenderer.drawHoods(ngscope, hoods, canvas);
     };
   });
 
