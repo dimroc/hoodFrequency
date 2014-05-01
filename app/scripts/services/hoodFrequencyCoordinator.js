@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('hoodFrequencyApp').
   factory('hoodFrequencyCoordinator', function() {
     var calculator = function (hoods, frequencyMap) {

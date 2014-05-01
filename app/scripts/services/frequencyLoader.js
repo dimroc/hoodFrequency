@@ -1,10 +1,8 @@
-'use strict';
-
 angular.module('hoodFrequencyApp').
   factory('frequencyLoader', function() {
 
     var pathFromSlug = function(slug) {
-      return "/scripts/static/frequencies/" + slug;
+      return "/static/frequencies/" + slug;
     };
 
     var hashFromFrequencyText = function(text) {

@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('hoodFrequencyApp')
   .directive('renderer', ['hoodLoader', 'hoodRenderer', 'frequencyLoader', 'hoodFrequencyCoordinator',
              function (hoodLoader, hoodRenderer, frequencyLoader, hoodFrequencyCoordinator) {

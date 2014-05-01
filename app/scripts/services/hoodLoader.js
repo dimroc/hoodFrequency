@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('hoodFrequencyApp').
   factory('hoodLoader', function() {
 
@@ -10,7 +8,7 @@ angular.module('hoodFrequencyApp').
     };
 
     var pathFromSlug = function(slug) {
-      return "/scripts/static/manhattan/" + slug + ".json";
+      return "/static/manhattan/" + slug + ".json";
     };
 
     var loadHoods = function(hoods) {

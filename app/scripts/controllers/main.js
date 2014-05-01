@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('hoodFrequencyApp')
   .controller('MainCtrl', function ($scope, $routeParams, hoodDirectory) {
     $scope.hoods = hoodDirectory.manhattan;

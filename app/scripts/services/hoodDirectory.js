@@ -1,5 +1,3 @@
-'use strict';
-
 angular.module('hoodFrequencyApp').
   factory('hoodDirectory', function() {
     var manhattan = [
