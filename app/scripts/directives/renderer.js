@@ -5,9 +5,9 @@ angular.module('hoodFrequencyApp')
              function (hoodLoader, hoodRenderer, frequencyLoader, hoodFrequencyCoordinator) {
     return {
       restrict: 'A',
-      template: '<canvas class="hoods"></canvas>',
-      link: function (scope, elem, attrs) {
-        console.log("Rendering: ", scope.frequencyFile);
+      template: '<canvas class=\'hoods\'></canvas>',
+      link: function (scope, elem) {
+        console.log('Rendering: ', scope.frequencyFile);
 
         hoodLoader(scope.hoods).done(function(hoods) {
           frequencyLoader(scope.frequencyFile).done(function(frequency) {

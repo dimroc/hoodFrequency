@@ -6,8 +6,8 @@ angular.module('hoodFrequencyApp')
     $scope.frequencyFile = $routeParams.frequencyFile || 'knicks';
 
     $scope.isActive = function(file) {
-      if ($scope.frequencyFile == file) {
-        return "active";
+      if ($scope.frequencyFile === file) {
+        return 'active';
       }
     };
 
@@ -20,11 +20,11 @@ angular.module('hoodFrequencyApp')
       }
     };
 
-    $scope.$on("hood.selected", function(event, hood) {
+    $scope.$on('hood.selected', function(event, hood) {
       event.currentScope.hood = hood;
     });
 
-    $scope.$on("hood.deselected", function(event) {
+    $scope.$on('hood.deselected', function(event) {
       event.currentScope.hood = null;
     });
   });
