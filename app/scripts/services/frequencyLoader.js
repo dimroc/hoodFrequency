@@ -1,8 +1,12 @@
 angular.module('hoodFrequencyApp').
-  factory('frequencyLoader', function() {
+  factory('frequencyLoader', function(ENV) {
 
     var pathFromSlug = function(slug) {
-      return "/static/frequencies/" + slug;
+      if (ENV.name == "development") {
+        return "static/frequencies/" + slug;
+      } else {
+        return "hoodFrequency/static/frequencies/" + slug;
+      }
     };
 
     var hashFromFrequencyText = function(text) {

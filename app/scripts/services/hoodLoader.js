@@ -1,5 +1,5 @@
 angular.module('hoodFrequencyApp').
-  factory('hoodLoader', function() {
+  factory('hoodLoader', function(ENV) {
 
     var getAll = function(paths) {
       return _(paths).map(function(path) {
@@ -8,7 +8,11 @@ angular.module('hoodFrequencyApp').
     };
 
     var pathFromSlug = function(slug) {
-      return "/static/manhattan/" + slug + ".json";
+      if (ENV.name == "development") {
+        return "static/manhattan/" + slug + ".json";
+      } else {
+        return "hoodFrequency/static/manhattan/" + slug + ".json";
+      }
     };
 
     var loadHoods = function(hoods) {
