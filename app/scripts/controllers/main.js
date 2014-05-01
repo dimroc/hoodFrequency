@@ -13,18 +13,18 @@ angular.module('hoodFrequencyApp')
 
     $scope.tailStyle = {visibility: 'hidden'};
     $scope.updateTail = function(event) {
-      if ($scope.hood) {
-        $scope.tailStyle = {left: event.pageX + 20, top: event.pageY};
+      if (this.hood) {
+        this.tailStyle = {left: event.pageX + 20, top: event.pageY};
       } else {
-        $scope.tailStyle = {visibility: 'hidden'};
+        this.tailStyle = {visibility: 'hidden'};
       }
     };
 
     $scope.$on("hood.selected", function(event, hood) {
-      $scope.hood = hood;
+      event.currentScope.hood = hood;
     });
 
     $scope.$on("hood.deselected", function(event) {
-      $scope.hood = null;
+      event.currentScope.hood = null;
     });
   });

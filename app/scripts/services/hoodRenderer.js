@@ -64,6 +64,7 @@ angular.module('hoodFrequencyApp').
       },
 
       drawHoods: function(ngscope, hoods, canvas, scale) {
+        paper.clear();
         var scope = paper.setup(canvas);
         var geometries = _(hoods).map(function(hood) { return hood.geometry });
         var minPoint = this.getMinPointForAll(geometries);
@@ -81,14 +82,14 @@ angular.module('hoodFrequencyApp').
         scope.view.draw();
       },
 
-      _handleMouseEvents: function(scope, ngscope) {
-        var tool = new scope.Tool();
+      _handleMouseEvents: function(paperScope, ngscope) {
+        var tool = new paperScope.Tool();
         var selection = null;
         var loading = false;
 
         tool.onMouseMove = function(event) {
           if (event.item) {
-            if(selection != event.item) ngscope.$emit("hood.selected", event.item.data);
+            if(selection != event.item) { ngscope.$emit("hood.selected", event.item.data); }
             selection = event.item;
           } else {
             if(selection) ngscope.$emit("hood.deselected");
