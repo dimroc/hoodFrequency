@@ -10,4 +10,21 @@ angular.module('hoodFrequencyApp')
         return "active";
       }
     };
+
+    $scope.tailStyle = {visibility: 'hidden'};
+    $scope.updateTail = function(event) {
+      if ($scope.hood) {
+        $scope.tailStyle = {left: event.pageX + 20, top: event.pageY};
+      } else {
+        $scope.tailStyle = {visibility: 'hidden'};
+      }
+    };
+
+    $scope.$on("hood.selected", function(event, hood) {
+      $scope.hood = hood;
+    });
+
+    $scope.$on("hood.deselected", function(event) {
+      $scope.hood = null;
+    });
   });

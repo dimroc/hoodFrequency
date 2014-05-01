@@ -63,7 +63,7 @@ angular.module('hoodFrequencyApp').
         });
       },
 
-      drawHoods: function(hoods, colorChart, canvas, scale) {
+      drawHoods: function(ngscope, hoods, colorChart, canvas, scale) {
         var scope = paper.setup(canvas);
         var geometries = _(hoods).map(function(hood) { return hood.geometry });
         var minPoint = this.getMinPointForAll(geometries);
@@ -77,64 +77,29 @@ angular.module('hoodFrequencyApp').
           this.colorHood(hood, colorChart);
         }, this);
 
-        //this._handleMouseEvents(scope, id);
-
-        //window.onresize = function() {
-          //var width = $("#"+id).width();
-          //var height = $("#"+id).height();
-
-          //if(width) {
-            //scope.view.viewSize = [width, height];
-            //scope.view.draw();
-          //}
-        //}
-
-        //scope.view.onFrame = function(event) {
-          //_(scope.project.layers[0]._children).each(function(path) {
-            //if(path.fillColor.blue != 0)
-              //path.fillColor.blue -= 0.005;
-          //});
-        //};
-
+        this._handleMouseEvents(scope, ngscope);
         scope.view.draw();
       },
 
-      //_handleMouseEvents: function(scope, id) {
-        //var tool = new scope.Tool();
-        //var selection = null;
-        //var loading = false;
+      _handleMouseEvents: function(scope, ngscope) {
+        var tool = new scope.Tool();
+        var selection = null;
+        var loading = false;
 
-        //tool.onMouseMove = function(event) {
-          //if (event.item) {
-            //if(selection && selection != event.item) selection.fillColor = 'black';
-            //selection = event.item;
-            //selection.fillColor = 'green';
-            //if (!loading) $("#" + id).css("cursor", "pointer");
-          //} else {
-            //if(selection) selection.fillColor = 'black';
-            //$("#" + id).css("cursor", "default");
-            //selection = null;
-          //}
-        //};
-
-        //tool.onMouseUp = function(event) {
-          //var slug = event.item.data.slug;
-          //loading = true;
-          //$("canvas").css("cursor", "wait");
-
-          //var destination = "/hoods/" + slug;
-          //if (window.location.href.match(/only_media=true/i)) {
-            //destination += "?only_media=true";
-          //}
-
-          //window.location.href = destination;
-        //};
-      //}
+        tool.onMouseMove = function(event) {
+          if (event.item) {
+            if(selection != event.item) ngscope.$emit("hood.selected", event.item.data);
+            selection = event.item;
+          } else {
+            if(selection) ngscope.$emit("hood.deselected");
+            selection = null;
+          }
+        };
+      }
     };
 
-    return function (hoods, colorChart, canvas) {
-      HoodRenderer.drawHoods(hoods, colorChart, canvas);
+    return function (ngscope, hoods, colorChart, canvas) {
+      HoodRenderer.drawHoods(ngscope, hoods, colorChart, canvas);
     };
   });
-
 

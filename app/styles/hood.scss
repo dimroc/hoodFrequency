@@ -1,4 +1,17 @@
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/mixins/_opacity.scss";
+
 canvas.hoods {
   height: 950px;
   width: 500px;
+}
+
+.mouse-tail {
+  @extend .tooltip;
+  @include opacity(1);
+  position: absolute;
+  float: left;
+
+  .tooltip-inner {
+    max-width: 400px;
+  }
 }
