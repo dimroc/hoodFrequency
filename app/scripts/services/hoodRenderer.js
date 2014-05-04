@@ -68,7 +68,7 @@ angular.module('hoodFrequencyApp').
         var scope = paper.setup(canvas);
         var geometries = _(hoods).map(function(hood) { return hood.geometry });
         var minPoint = this.getMinPointForAll(geometries);
-        scale = scale || 1/32;
+        scale = scale || 1/38;
 
         _(hoods).each(function(hood) {
           hood.paths = this.drawHood(scope, hood, minPoint, scale);

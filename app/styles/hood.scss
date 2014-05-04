@@ -1,7 +1,7 @@
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/mixins/_opacity.scss";
 
 canvas.hoods {
-  height: 950px;
+  height: 800px;
   width: 500px;
 }
 
@@ -14,4 +14,8 @@ canvas.hoods {
   .tooltip-inner {
     max-width: 400px;
   }
+}
+
+.jumbotron {
+  padding: 20px;
 }

@@ -7,6 +7,11 @@
   </ul>
   <h3 class="text-muted">Hood Frequency</h3>
 </div>
+<h5> <a href="https://github.com/dimroc/etl-language-comparison">How was data gathered?</a> </h5>
+
+<div class="jumbotron">
+  <div renderer ng-mousemove="updateTail($event)"></div>
+</div>
 
 <div class="mouse-tail" ng-style="tailStyle">
   <div class="tooltip-inner">
@@ -14,12 +19,4 @@
     <br/>
     Frequency: {{hood.frequency | number}} / {{hood.totalFrequency | number}}
   </div>
-</div>
-
-<div class="jumbotron">
-  <div renderer ng-mousemove="updateTail($event)"></div>
-</div>
-
-<div class="footer">
-  <p><span class="glyphicon glyphicon-heart"></span> from NYC</p>
 </div>
